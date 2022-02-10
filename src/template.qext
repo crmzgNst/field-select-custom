@@ -1,0 +1,8 @@
+{
+  "name" : "Field Select",
+  "description" : "Field Select",
+  "icon" : "extension",
+  "type" : "visualization",
+  "version": "0.1",
+  "author": "Daniel Massarsky <daniel.massarsky@qlik.com>"
+}
