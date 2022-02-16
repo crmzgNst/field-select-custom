@@ -1,86 +1,19 @@
 @import '~leonardo-ui/dist/leonardo-ui.css';
 
-.qv-object-fieldSelect {
-  // @import '~leonardo-ui/dist/leonardo-ui.css';
-
-  form {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: 100%;
-    justify-content: start;
-  }
-
-  .list-actions-menu {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    // height: 100%;
-    justify-content: start;
-  }
-
-  .lui-checkbox__input {
-    background: #564F8A;
+  .custom-filter-form {
+    background-color: #0099cc;
+    padding: 1rem;
     color: #FFFFFF;
-    width: 95% !important;
   }
 
-  .lui-checkbox__input:focus+.lui-checkbox__check-wrap,
-  label:focus {
-    color: #52a2cc;
-    // outline: 7px auto  color;
-    // outline-color: -webkit-focus-ring-color;
-    // outline-style: auto;
-    // outline-width: 7px;
-    // outline-offset: 0px;
-  }
-
-
-  .list-action {
-
-    &.list-action-disabled {
-      cursor: default;
-      opacity: .4;
-    }
-
-    .list-action-icon {
-
-
-      display: inline-block;
-      // font-family: LUI icons;
-      font-size: 16px;
-      font-weight: 400;
-      text-decoration: inherit;
-      direction: ltr;
-      box-sizing: border-box;
-      // border-radius: 3px;
-      vertical-align: middle;
-      text-transform: none;
-      width: 22px;
-      height: 22px;
-      line-height: 20px;
-      font-size: 14px;
-      font-style: normal;
-      text-align: center;
-      // border: 1px solid;
-    }
-  }
-
-  .lui-checkbox .lui-checkbox__input .lui-checkbox__check-wrap {
-    border-radius: 50% !important;
-    padding-bottom: 5px;
-    padding-right: 5px;
-    padding-left: 1px;
+  .filter-divider {
+      color: #FFFFFF;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
   }
 
   .qv-object-content {
     overflow-y: auto;
+    overflow-x: hidden;
+    height: 985px;
   }
-
-}
-
-.panel-error {
-  color: red
-}
-
-// .lui-checkbox.lui-checkbox.lui-checkbox.lui-disabled .lui-checkbox__check, .lui-checkbox .lui-checkbox__input:disabled+.lui-checkbox__check-wrap .lui-checkbox__check

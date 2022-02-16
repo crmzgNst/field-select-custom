@@ -187,7 +187,7 @@ export const definition = {
                   label: "Checkbox - Selected Background Color",
                   type: "string",
                   expression: "optional",
-                  defaultValue: "#fab761"
+                  defaultValue: "#045073"
                 }, 'checkboxSelectedBackgroundColor'),
 
                 checkboxBackgroundColorContrastRatio: {
