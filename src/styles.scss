@@ -12,10 +12,10 @@
       margin-bottom: 0.5rem;
   }
 
-  .qv-object-content {
+  .scroll-bar {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 985px;
+    height: inherit;
   }
 
   .check-box-span-text {
@@ -23,3 +23,25 @@
     font-weight: normal;
     font-size: 12px;
   }
+
+    /* width */
+    .scroll-bar::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    .scroll-bar::-webkit-scrollbar-track {
+      background: #FFFFFF;
+    }
+    
+    /* Handle */
+    .scroll-bar::-webkit-scrollbar-thumb {
+      background: #045073; 
+    }
+
+    /* Handle on hover */
+    .scroll-bar::-webkit-scrollbar-thumb:hover {
+      background: #045073; 
+    }
+
+  
