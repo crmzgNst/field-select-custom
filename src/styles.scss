@@ -2,20 +2,17 @@
 
   .custom-filter-form {
     background-color: #FFFFFF;
-    padding: 1rem;
+    padding: 10px;
     color: #000000;
   }
 
-  .filter-divider {
-      color: #000000;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
-  }
-
-  .scroll-bar {
+  .dropdown-options {
     overflow-y: auto;
     overflow-x: hidden;
-    height: inherit;
+    height: 250px;
+    padding: 5px;
+    z-index: 2;
+    background: #FFFFFF;
   }
 
   .check-box-span-text {
@@ -24,24 +21,73 @@
     font-size: 12px;
   }
 
+  .select-options {
+    font-size: 14px;
+  }
+
     /* width */
-    .scroll-bar::-webkit-scrollbar {
+    .dropdown-options::-webkit-scrollbar {
       width: 10px;
     }
 
     /* Track */
-    .scroll-bar::-webkit-scrollbar-track {
+    .dropdown-options::-webkit-scrollbar-track {
       background: #FFFFFF;
     }
     
     /* Handle */
-    .scroll-bar::-webkit-scrollbar-thumb {
+    .dropdown-options::-webkit-scrollbar-thumb {
       background: #045073; 
     }
 
     /* Handle on hover */
-    .scroll-bar::-webkit-scrollbar-thumb:hover {
+    .dropdown-options::-webkit-scrollbar-thumb:hover {
       background: #045073; 
+    }
+
+    // Select dropdown
+    .multiselect {
+      width: -webkit-fill-available;
+    }
+    
+    .selectBox {
+      width: -webkit-fill-available;
+    }
+    
+    .selectBox select {
+      position: relative;
+      width: -webkit-fill-available;
+      display: flex;
+      border: 1px solid #ADADAD;
+      border-radius: 4px;
+      padding: 5px 10px;
+      background: #FFFFFF;
+      justify-content: space-between; 
+    }
+    
+    #checkboxes {
+      display: none;
+      border: 1px #dadada solid;
+    }
+    
+    #checkboxes label {
+      display: block;
+    }
+    
+    #checkboxes label:hover {
+      background-color: #1e90ff;
+    }
+
+    .btn-options {
+      display: flex;
+      justify-content: space-between;
+      width: -webkit-fill-available;
+      border: 1px solid #ADADAD;
+      border-radius: 4px;
+      padding: 5px 10px;
+      background: #FFFFFF;
+      font-size: 14px;
+      text-align: left;
     }
 
   

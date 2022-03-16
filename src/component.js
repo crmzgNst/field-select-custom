@@ -138,7 +138,7 @@ export const component = ($element, layout, isHot) => {
         console.log(this)
         scope.model.selectListObjectAll('/qListObjectDef')
       }
-    },
+    },/* 
     {
       label: 'Select possible',
       icon: 'lui-icon--select-possible',
@@ -162,7 +162,7 @@ export const component = ($element, layout, isHot) => {
       click: () => {
         scope.model.selectListObjectExcluded('/qListObjectDef')
       }
-    },
+    }, */
     {
       label: 'Clear Selections',
       icon: ['lui-icon', 'lui-icon--clear-selections'],
@@ -170,7 +170,7 @@ export const component = ($element, layout, isHot) => {
       click: () => {
         scope.model.clearSelections('/qListObjectDef')
       }
-    },
+    }
   ]
 
 
@@ -184,6 +184,19 @@ export const component = ($element, layout, isHot) => {
       prevFocusable($('.qv-panel-wrap')).focus()
     }
   })
+
+  var expanded = false;
+
+  objectScope.showCheckboxes = () => {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+      checkboxes.style.display = "block";
+      expanded = true;
+    } else {
+      checkboxes.style.display = "none";
+      expanded = false;
+    }
+  };
   
 }
 // if (!$element.hasClass('qv-object-modalpanel-extension')) $element.addClass('qv-object-modalpanel-extension')
