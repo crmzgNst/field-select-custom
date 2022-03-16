@@ -1,39 +1,35 @@
-    <form id="{{layout.qInfo.qId}}" role="form" ng-if="layout.properties.showCondition != '0'" class="custom-filter-form scroll-bar">
+    <form id="{{layout.qInfo.qId}}" role="form" ng-if="layout.properties.showCondition != '0'" class="custom-filter-form">
         <label ng-if="layout.properties.includeSelectAllOption && !layout.properties.alwaysOneSelectedValue" ng-repeat="item in selectOptions track by $index"
             class="lui-checkbox list-action" ng-class="{'list-action-disabled': item.disabled}">
-    
             <input class="lui-checkbox__input" ng-checked="false" ng-click="!item.disabled && item.click()"
-                type="checkbox"> <!-- aria-disabled="{{item.disabled}}" -->
+                type="checkbox">
             <div class="lui-checkbox__check-wrap">
-                <span class="lui-icon lui-icon--small list-action-icon" ng-class="item.icon"
-                    aria-hidden="true"></span>
+                <!-- <span class="lui-icon lui-icon--small list-action-icon" ng-class="item.icon"
+                    aria-hidden="true"></span> -->
                 <!-- Select options -->
-                <span class="check-box-span-text span-text">{{item.label}}</span>
+                <span class="check-box-span-text span-text select-options">{{item.label}}</span>
             </div>
         </label>
-        <select title="Hospital Service"
-                ng-model="item"
-                ng-click="select(item, $event)"
-                ng-options="item.qText for item in data track by item.qElemNumber">
-        </select>
-       <!-- <select ng-model="item" 
-                ng-options="item in selectOptions track by $index" // item.qText for item in data track by item.qElemNumber
-                ng-click="select(item, $event)">
-            <option ng-repeat="item in data track by item.qElemNumber" value="{{item}}" ng-click="select(item, $event)">{{item.qText}}</option>
-        </select> -->
-        <hr class="filter-divider">
-        <div>
-            <div ng-repeat="item in data track by item.qElemNumber">
-                <label class="lui-checkbox">
-                    <input class="lui-checkbox__input" ng-checked="item.isChecked" ng-click="select(item, $event)"
-                        type="checkbox"/>
-                        <!-- aria-label="{{item.ariaLabel}}" -->
-                    <div class="lui-checkbox__check-wrap">
-                        <!-- Arrow select-->
-                        <span class="lui-checkbox__check" aria-hidden="true" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"></span>
-                        <span class="check-box-span-text span-text">{{item.qText}}</span>
-                    </div>
-                </label>
+        <div class="multiselect">
+            <div class="selectBox">
+                <button ng-click="showCheckboxes()" type="button" class="btn-options">
+                    Select an option
+                    <span class="lui-button__icon  lui-icon lui-icon--arrow-down">
+                    </span>
+                </button>
             </div>
-        </div>
+            <div id="checkboxes" class="dropdown-options">
+                <div ng-repeat="item in data track by item.qElemNumber">
+                    <label class="lui-checkbox">
+                        <input class="lui-checkbox__input" ng-checked="item.isChecked" ng-click="select(item, $event)"
+                            type="checkbox"/>
+                        <div class="lui-checkbox__check-wrap">
+                            <!-- Arrow select-->
+                            <span class="lui-checkbox__check" aria-hidden="true" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"></span>
+                            <span class="check-box-span-text span-text">{{item.qText}}</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+          </div>
     </form>
