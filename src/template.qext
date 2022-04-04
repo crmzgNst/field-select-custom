@@ -1,8 +1,8 @@
 {
-  "name" : "Field Select",
-  "description" : "Field Select",
+  "name" : "Field Multi Select",
+  "description" : "Field Multi Select",
   "icon" : "extension",
   "type" : "visualization",
   "version": "0.1",
-  "author": "Daniel Massarsky <daniel.massarsky@qlik.com>"
+  "author": "Martin Cisneros & Cesar Ramirez"
 }

@@ -1,7 +1,7 @@
 {
-  "name": "field-select-extension",
+  "name": "field-multi-select-extension",
   "version": "1.0.0",
-  "description": "Qlik Sense Field Select Extension",
+  "description": "Qlik Sense Field Multi Select Extension",
   "main": "index.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server --env.development --env.url=https://usnyc-alj/sense/app/f9f8950d-90c8-416b-8a05-608fd248130e/sheet/ac1c388c-19c0-4cf4-9311-19c1e1c62c22/state/edit --env.build_output=C:/QlikShare/StaticContent/Extensions/fieldSelect --progress",
@@ -14,7 +14,7 @@
     "url": "https://github.com/alner/ExtensionTemplate.git"
   },
   "keywords": [],
-  "author": "Alexander Nerush (ale.nerush@gmail.com)",
+  "author": "Martin Cisneros & Cesar Ramirez",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^9.1.0",
