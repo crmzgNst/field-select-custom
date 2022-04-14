@@ -189,14 +189,43 @@ export const component = ($element, layout, isHot) => {
 
   objectScope.showCheckboxes = () => {
     var checkboxes = document.getElementById("checkboxes");
+    var multiselect = document.getElementById("multiselect");
+    var coords = getPos(multiselect);
+    
     if (!expanded) {
       checkboxes.style.display = "block";
+      try {
+        document.getElementById("grid").append(checkboxes);  
+        checkboxes.style.width = (multiselect.clientWidth - 13) + 'px';
+        checkboxes.style.top = (coords.y - 98) + 'px';
+        checkboxes.style.left = coords.x + 'px';
+      } catch (error) {
+        try{
+          document.getElementById("grid-embed").append(checkboxes);
+          checkboxes.style.width = (multiselect.clientWidth) + 'px';
+          checkboxes.style.top = (coords.y - 160) + 'px';
+          checkboxes.style.left = (coords.x - 68) + 'px';
+        }
+        catch(error){
+          console.log(error);
+        }
+      }
+      
       expanded = true;
     } else {
       checkboxes.style.display = "none";
       expanded = false;
     }
   };
+
+  function getPos(el) {
+    // yay readability
+    for (var lx=0, ly=0;
+         el != null;
+         lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+    return {x: lx,y: ly};
+}
+  
   
 }
 // if (!$element.hasClass('qv-object-modalpanel-extension')) $element.addClass('qv-object-modalpanel-extension')
