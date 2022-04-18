@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _, { random } from 'lodash';
 import './styles.scss';
 
 import {
@@ -22,6 +22,17 @@ export const component = ($element, layout, isHot) => {
 
   var scope = $element.scope()
   var objectScope = scope.$$childHead.$$childTail
+  var checkboxesId = "checkboxes" + Math.floor((Math.random()*100)+1);
+  var multiselectId = "multiselect" + Math.floor((Math.random()*100)+1);
+  var scrollListId = "scroll-list" + Math.floor((Math.random()*100)+1);
+
+  var multi = document.getElementById("multiselectId");
+  var check = document.getElementById("checkboxesId");
+  var scroll = document.getElementById("scroll-list");
+
+  multi.id = multiselectId;
+  check.id = checkboxesId;
+  scroll.id = scrollListId;
 
   if (layout.properties.showCondition == '0') return
 
@@ -99,7 +110,6 @@ export const component = ($element, layout, isHot) => {
     if (fieldType !== 'variable') {
       if (alwaysOneSelectedValue && item.qState == 'S') return
       scope.model.selectListObjectValues(`/qListObjectDef`, [item.qElemNumber], (alwaysOneSelectedValue ? false : true), true)
-
     }
   }
 
@@ -112,6 +122,7 @@ export const component = ($element, layout, isHot) => {
 
     item.isChecked = (item.qState == 'S')
     item.ariaLabel = `${item.qText} - is ${!item.isChecked ? 'not' : ''} selected`
+
     return item
   })
 
@@ -188,21 +199,22 @@ export const component = ($element, layout, isHot) => {
   var expanded = false;
 
   objectScope.showCheckboxes = () => {
-    var checkboxes = document.getElementById("checkboxes");
-    var multiselect = document.getElementById("multiselect");
+    var checkboxes = document.getElementById(checkboxesId);
+    var list = document.getElementById(scrollListId);
+    var multiselect = document.getElementById(multiselectId);
     var coords = getPos(multiselect);
     
     if (!expanded) {
       checkboxes.style.display = "block";
       try {
         document.getElementById("grid").append(checkboxes);  
-        checkboxes.style.width = (multiselect.clientWidth - 13) + 'px';
+        list.style.width = (multiselect.clientWidth - 13) + 'px';
         checkboxes.style.top = (coords.y - 98) + 'px';
         checkboxes.style.left = coords.x + 'px';
       } catch (error) {
         try{
           document.getElementById("grid-embed").append(checkboxes);
-          checkboxes.style.width = (multiselect.clientWidth) + 'px';
+          list.style.width = (multiselect.clientWidth) + 'px';
           checkboxes.style.top = (coords.y - 160) + 'px';
           checkboxes.style.left = (coords.x - 68) + 'px';
         }

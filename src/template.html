@@ -11,7 +11,7 @@
             </div>
         </label>
         <hr>
-        <div class="multiselect" id="multiselect">
+        <div class="multiselect" id="multiselectId">
             <div class="selectBox">
                 <button ng-click="showCheckboxes()" type="button" class="btn-options">
                     Select an option
@@ -19,17 +19,26 @@
                     </span>
                 </button>
             </div>
-            <div id="checkboxes" class="dropdown-options">
-                <div ng-repeat="item in data track by item.qElemNumber">
-                    <label class="lui-checkbox">
-                        <input class="lui-checkbox__input" ng-checked="item.isChecked" ng-click="select(item, $event)"
-                            type="checkbox"/>
-                        <div class="lui-checkbox__check-wrap">
-                            <!-- Arrow select-->
-                            <span class="lui-checkbox__check" aria-hidden="true" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"></span>
-                            <span class="check-box-span-text span-text">{{item.qText}}</span>
-                        </div>
-                    </label>
+            <div id="checkboxesId" class="dropdown-multi-options checkboxes">
+                <div>
+                    <input type="text" name="search" placeholder="Search">
+                </div>
+                <hr>
+                <div class="scroll-down" id="scroll-list">
+                    <div ng-repeat="item in data track by item.qElemNumber">
+                        <label class="lui-checkbox">
+                            <input class="lui-checkbox__input" ng-checked="item.isChecked" ng-click="select(item, $event)"
+                                type="checkbox"/>
+                            <div class="lui-checkbox__check-wrap">
+                                <!-- Arrow select-->
+                                <span class="lui-checkbox__check" aria-hidden="true" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"></span>
+                                <span class="check-box-span-text span-text">{{item.qText}}</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="clear-button">
+                    <button>Clear Selections X</button>
                 </div>
             </div>
           </div>

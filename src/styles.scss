@@ -6,14 +6,17 @@
     color: #000000;
   }
 
-  .dropdown-options {
+  .dropdown-multi-options {
+    position: absolute;
+    z-index: 2;
+    background: #FFFFFF;
+  }
+
+  .scroll-down{
     overflow-y: auto;
     overflow-x: hidden;
     height: 250px;
     padding: 5px;
-    z-index: 2;
-    background: #FFFFFF;
-    position: absolute;
   }
 
   .check-box-span-text {
@@ -27,22 +30,22 @@
   }
 
     /* width */
-    .dropdown-options::-webkit-scrollbar {
+    .scroll-down::-webkit-scrollbar {
       width: 10px;
     }
 
     /* Track */
-    .dropdown-options::-webkit-scrollbar-track {
+    .scroll-down::-webkit-scrollbar-track {
       background: #FFFFFF;
     }
     
     /* Handle */
-    .dropdown-options::-webkit-scrollbar-thumb {
+    .scroll-down::-webkit-scrollbar-thumb {
       background: #045073; 
     }
 
     /* Handle on hover */
-    .dropdown-options::-webkit-scrollbar-thumb:hover {
+    .scroll-down::-webkit-scrollbar-thumb:hover {
       background: #045073; 
     }
 
@@ -66,17 +69,20 @@
       justify-content: space-between; 
     }
     
-    #checkboxes {
+    .checkboxes {
       display: none;
       border: 1px #dadada solid;
     }
     
-    #checkboxes label {
+    .checkboxes label {
       display: block;
     }
     
-    #checkboxes label:hover {
+    .checkboxes label:hover {
       background-color: #1e90ff;
+      span{
+        color: #FFFFFF
+      }
     }
 
     .btn-options {
@@ -89,6 +95,10 @@
       background: #FFFFFF;
       font-size: 14px;
       text-align: left;
+    }
+    
+    .clear-button{
+      text-align: end;
     }
 
   
