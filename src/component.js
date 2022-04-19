@@ -149,7 +149,7 @@ export const component = ($element, layout, isHot) => {
         console.log(this)
         scope.model.selectListObjectAll('/qListObjectDef')
       }
-    },/* 
+    },
     {
       label: 'Select possible',
       icon: 'lui-icon--select-possible',
@@ -173,7 +173,7 @@ export const component = ($element, layout, isHot) => {
       click: () => {
         scope.model.selectListObjectExcluded('/qListObjectDef')
       }
-    }, */
+    },
     {
       label: 'Clear Selections',
       icon: ['lui-icon', 'lui-icon--clear-selections'],
@@ -229,6 +229,8 @@ export const component = ($element, layout, isHot) => {
       expanded = false;
     }
   };
+
+  objectScope.clearSelections = () => scope.model.clearSelections('/qListObjectDef');
 
   function getPos(el) {
     // yay readability
