@@ -141,47 +141,52 @@ export const component = ($element, layout, isHot) => {
     return result
   }
 
-  objectScope.selectOptions = [{
-      label: 'Select all',
-      icon: 'lui-icon--select-all',
-      disabled: !hasState(["qOption", "qAlternative", "qExcluded", "qDeselected"]),
-      click: function () {
-        console.log(this)
-        scope.model.selectListObjectAll('/qListObjectDef')
-      }
-    },/* 
-    {
-      label: 'Select possible',
-      icon: 'lui-icon--select-possible',
-      disabled: !hasState(["qOption"]),
-      click: () => {
-        scope.model.selectListObjectPossible('/qListObjectDef')
-      }
-    },
-    {
-      label: 'Select alternative',
-      icon: 'lui-icon--select-alternative',
-      disabled: !hasState(["qAlternative"]),
-      click: () => {
-        scope.model.selectListObjectAlternative('/qListObjectDef')
-      }
-    },
-    {
-      label: 'Select excluded',
-      icon: 'lui-icon--select-excluded',
-      disabled: !hasState(["qExcluded", "qAlternative"]),
-      click: () => {
-        scope.model.selectListObjectExcluded('/qListObjectDef')
-      }
-    }, */
-    {
-      label: 'Clear Selections',
-      icon: ['lui-icon', 'lui-icon--clear-selections'],
-      disabled: !hasState(["qSelected"]),
-      click: () => {
-        scope.model.clearSelections('/qListObjectDef')
-      }
-    }
+  objectScope.clearSelections = () => scope.model.clearSelections('/qListObjectDef');
+
+  objectScope.selectAllData = () => scope.model.selectListObjectAll('/qListObjectDef');
+
+  objectScope.selectOptions = [
+    // {
+    //   label: 'Select all',
+    //   icon: 'lui-icon--select-all',
+    //   disabled: !hasState(["qOption", "qAlternative", "qExcluded", "qDeselected"]),
+    //   click: function () {
+    //     console.log(this)
+    //     scope.model.selectListObjectAll('/qListObjectDef')
+    //   }
+    // },
+    // {
+    //   label: 'Select possible',
+    //   icon: 'lui-icon--select-possible',
+    //   disabled: !hasState(["qOption"]),
+    //   click: () => {
+    //     scope.model.selectListObjectPossible('/qListObjectDef')
+    //   }
+    // },
+    // {
+    //   label: 'Select alternative',
+    //   icon: 'lui-icon--select-alternative',
+    //   disabled: !hasState(["qAlternative"]),
+    //   click: () => {
+    //     scope.model.selectListObjectAlternative('/qListObjectDef')
+    //   }
+    // },
+    // {
+    //   label: 'Select excluded',
+    //   icon: 'lui-icon--select-excluded',
+    //   disabled: !hasState(["qExcluded", "qAlternative"]),
+    //   click: () => {
+    //     scope.model.selectListObjectExcluded('/qListObjectDef')
+    //   }
+    // },
+    // {
+    //   label: 'Clear Selections',
+    //   icon: ['lui-icon', 'lui-icon--clear-selections'],
+    //   disabled: !hasState(["qSelected"]),
+    //   click: () => {
+    //     scope.model.clearSelections('/qListObjectDef')
+    //   }
+    // }
   ]
 
 
