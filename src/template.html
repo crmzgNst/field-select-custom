@@ -9,7 +9,7 @@
             </div>
             <div id="checkboxesId" class="dropdown-multi-options checkboxes">
                 <div>
-                    <input type="search" name="search" placeholder="Search" ng-model="searchText">
+                    <input type="search" name="filterSearch" placeholder="Search" ng-model="searchText">
                 </div>
                 <div class="select-all-button">
                     <button type="button" ng-click="selectAllData()">Select All</button>
@@ -21,7 +21,6 @@
                             <input class="lui-checkbox__input" ng-checked="item.isChecked" ng-click="select(item, $event)"
                                 type="checkbox"/>
                             <div class="lui-checkbox__check-wrap">
-                                <!-- Arrow select-->
                                 <span class="lui-checkbox__check" aria-hidden="true" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"></span>
                                 <span class="check-box-span-text span-text" style="text-overflow: ellipsis;">{{ item.qText | limitTo: 22 }}{{ item.qText.length > 22 ? '&hellip;' : '' }}</span>
                             </div>

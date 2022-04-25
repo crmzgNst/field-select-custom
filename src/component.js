@@ -105,6 +105,8 @@ export const component = ($element, layout, isHot) => {
 
   objectScope.select = (item, event) => {
     // console.log(item.disabled)
+    
+    item.isChecked = !item.isChecked;
 
     if (event) event.preventDefault()
     // console.log(alwaysOneSelectedValue, item)
@@ -113,6 +115,8 @@ export const component = ($element, layout, isHot) => {
       if (alwaysOneSelectedValue && item.qState == 'S') return
       scope.model.selectListObjectValues(`/qListObjectDef`, [item.qElemNumber], (alwaysOneSelectedValue ? false : true), true)
     }
+
+    console.log(item);
   }
 
   objectScope.selectAll = () => {
@@ -143,9 +147,19 @@ export const component = ($element, layout, isHot) => {
     return result
   }
 
-  objectScope.clearSelections = () => scope.model.clearSelections('/qListObjectDef');
+  objectScope.clearSelections = () => {
+    objectScope.data.forEach(element => {
+      element.isChecked = false;
+    });
+    scope.model.clearSelections('/qListObjectDef')
+  };
 
-  objectScope.selectAllData = () => scope.model.selectListObjectAll('/qListObjectDef');
+  objectScope.selectAllData = () => {
+    objectScope.data.forEach(element => {
+      element.isChecked = true;
+    });
+    scope.model.selectListObjectAll('/qListObjectDef')
+  };
 
   objectScope.selectOptions = [
     // {
