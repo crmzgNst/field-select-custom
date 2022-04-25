@@ -26,6 +26,8 @@ export const component = ($element, layout, isHot) => {
   var multiselectId = "multiselect" + Math.floor((Math.random()*100)+1);
   var scrollListId = "scroll-list" + Math.floor((Math.random()*100)+1);
 
+  var searchText = "";
+
   var multi = document.getElementById("multiselectId");
   var check = document.getElementById("checkboxesId");
   var scroll = document.getElementById("scroll-list");
