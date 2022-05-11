@@ -8,11 +8,12 @@
                 </button>
             </div>
             <div id="checkboxesId" class="dropdown-multi-options checkboxes">
-                <div>
+                <div class="dropdown-element-input">
                     <input type="search" name="filterSearch" placeholder="Search" ng-model="searchText">
                 </div>
-                <div class="select-all-button">
-                    <button type="button" ng-click="selectAllData()">Select All</button>
+                <hr>
+                <div class="dropdown-element">
+                    <input class="lui-checkbox__check" type="checkbox" ng-click="selectAllDeselectAll()"> Select All
                 </div>
                 <hr>
                 <div class="scroll-down" id="scroll-list">
@@ -22,13 +23,10 @@
                                 type="checkbox"/>
                             <div class="lui-checkbox__check-wrap">
                                 <span class="lui-checkbox__check" aria-hidden="true" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"></span>
-                                <span class="check-box-span-text span-text" style="text-overflow: ellipsis;">{{ item.qText | limitTo: 22 }}{{ item.qText.length > 22 ? '&hellip;' : '' }}</span>
+                                <span class="check-box-span-text span-text" style="text-overflow: ellipsis;" ng-style="{background: item.color}" data-toggle="tooltip" data-placement="top" title="{{item.qText}}">{{ item.qText | limitTo: 22 }}{{ item.qText.length > 22 ? '&hellip;' : '' }}</span>
                             </div>
                         </label>
                     </div>
-                </div>
-                <div class="clear-button">
-                    <button type="button" ng-click="clearSelections()">Clear Selections X</button>
                 </div>
             </div>
           </div>

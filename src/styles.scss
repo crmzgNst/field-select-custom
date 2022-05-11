@@ -105,3 +105,20 @@
       text-align: start;
     }
   
+    .dropdown-element-input{
+      padding: 5px;
+      width: -webkit-fill-available;
+      input{
+        width: -webkit-fill-available;
+        height: 25px;
+        margin-top: 10px;
+        border: 1px solid #b3b3b3;
+        border-radius: 2px;
+        padding: 5px;
+      }
+    }
+
+    .dropdown-element{
+      padding: 5px;
+      width: -webkit-fill-available;
+    }

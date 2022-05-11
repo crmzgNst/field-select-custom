@@ -27,6 +27,7 @@ export const component = ($element, layout, isHot) => {
   var scrollListId = "scroll-list" + Math.floor((Math.random()*100)+1);
 
   var searchText = "";
+  var selectAllCheck = false;
 
   var multi = document.getElementById("multiselectId");
   var check = document.getElementById("checkboxesId");
@@ -127,6 +128,22 @@ export const component = ($element, layout, isHot) => {
     var item = e[0];
 
     item.isChecked = (item.qState == 'S')
+    
+    //Insert color property
+    switch(item.qState) {
+      case 'O':
+        item.color = '#ffff00'
+        break;
+      case 'A':
+        item.color = '#ddd'
+        break;
+      case 'X':
+        item.color = '#a9a9a9'
+        break;
+    }
+    item.isOptional = (item.qState == 'O')
+    item.isAlternative = (item.qState == 'A')
+    item.isOut = (item.qState == 'X')
     item.ariaLabel = `${item.qText} - is ${!item.isChecked ? 'not' : ''} selected`
 
     return item
@@ -160,6 +177,23 @@ export const component = ($element, layout, isHot) => {
     });
     scope.model.selectListObjectAll('/qListObjectDef')
   };
+
+  objectScope.selectAllDeselectAll = () => {
+    if(!selectAllCheck){
+      objectScope.data.forEach(element => {
+        element.isChecked = true;
+      });
+      scope.model.selectListObjectAll('/qListObjectDef');
+      selectAllCheck = true;
+    }
+    else{
+      objectScope.data.forEach(element => {
+        element.isChecked = false;
+      });
+      scope.model.clearSelections('/qListObjectDef');
+      selectAllCheck = false;
+    }
+  }
 
   objectScope.selectOptions = [
     // {
