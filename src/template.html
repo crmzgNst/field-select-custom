@@ -1,33 +1,52 @@
-    <form id="{{layout.qInfo.qId}}" role="form" ng-if="layout.properties.showCondition != '0'" class="custom-filter-form">
-        <div class="multiselect" id="multiselectId">
-            <div class="selectBox">
-                <button ng-click="showCheckboxes()" type="button" class="btn-options">
-                    Select an option
-                    <span class="lui-button__icon  lui-icon lui-icon--arrow-down">
-                    </span>
-                </button>
+
+<form id="{{layout.qInfo.qId}}" role="form" ng-if="layout.properties.showCondition != '0'" class="custom-filter-form">
+    <div class="multiselect" id="multiselectId">
+        <!-- <div class="selected-container">
+            <div ng-repeat="item in selectedArray">{{ item }}</div>
+        </div> -->
+        <div  class="selectBox">
+            <button ng-click="showCheckboxes()" type="button" class="btn-options">
+                <span ng-if="selectedArray.length == 0">Select an option</span>
+                <span ng-if="selectedArray.length > 0" class="chip">
+                    {{ selectedArray[0] }}
+                </span> 
+                <span ng-if="selectedArray.length > 1" class="chip">
+                    {{ selectedArray[1] }}
+                </span>
+                <span ng-if="selectedArray.length > 2" class="chip">
+                    {{ selectedArray[2] }}
+                </span>
+                <span ng-if="selectedArray.length > 3" class="chip">
+                   +{{ selectedArray.length - 3 }}
+                </span>
+                <span class="lui-button__icon  lui-icon lui-icon--arrow-down">
+                </span>
+            </button>
+        </div>
+        <div id="checkboxesId" class="dropdown-multi-options checkboxes">
+            <div class="dropdown-element-input">
+                <input type="search" name="filterSearch" placeholder="Search" ng-model="searchText">
             </div>
-            <div id="checkboxesId" class="dropdown-multi-options checkboxes">
-                <div class="dropdown-element-input">
-                    <input type="search" name="filterSearch" placeholder="Search" ng-model="searchText">
-                </div>
-                <hr>
-                <div class="dropdown-element">
-                    <input class="lui-checkbox__check" type="checkbox" ng-click="selectAllDeselectAll()"> Select All
-                </div>
-                <hr>
-                <div class="scroll-down" id="scroll-list">
-                    <div ng-repeat="item in data | filter:searchText">
-                        <label class="lui-checkbox">
-                            <input class="lui-checkbox__input" ng-checked="item.isChecked" ng-click="select(item, $event)"
-                                type="checkbox"/>
-                            <div class="lui-checkbox__check-wrap">
-                                <span class="lui-checkbox__check" aria-hidden="true" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"></span>
-                                <span class="check-box-span-text span-text" style="text-overflow: ellipsis;" ng-style="{background: item.color}" data-toggle="tooltip" data-placement="top" title="{{item.qText}}">{{ item.qText | limitTo: 22 }}{{ item.qText.length > 22 ? '&hellip;' : '' }}</span>
-                            </div>
-                        </label>
-                    </div>
+            <hr>
+            <div class="dropdown-element">
+                <input class="lui-checkbox__check" type="checkbox" ng-click="selectAllDeselectAll()" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"> Select All
+            </div>
+            <hr>
+            <div class="scroll-down" id="scroll-list">
+                <div ng-repeat="item in data | filter:searchText">
+                    <label class="lui-checkbox">
+                        <input class="lui-checkbox__input" ng-checked="item.isChecked" ng-click="select(item, $event)"
+                            type="checkbox"/>
+                        <div class="lui-checkbox__check-wrap">
+                            <span class="lui-checkbox__check" aria-hidden="true" ng-style="{color: '#FFFFFF', background: item.isChecked ? layout.properties.checkBackgroundColor : 'transparent'}"></span>
+                            <span class="check-box-span-text span-text" style="text-overflow: ellipsis;" ng-style="{background: item.color}" data-toggle="tooltip" data-placement="top" title="{{item.qText}}">{{ item.qText | limitTo: 22 }}{{ item.qText.length > 22 ? '&hellip;' : '' }}</span>
+                        </div>
+                    </label>
                 </div>
             </div>
-          </div>
-    </form>
+            <div class="dropdown-element clear-button">
+                <button ng-click="clearSelections()">Clear selections</button>
+            </div>
+        </div>
+        </div>
+</form>

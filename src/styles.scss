@@ -99,6 +99,13 @@
     
     .clear-button{
       text-align: end;
+      button{
+        background-color: transparent;
+        border: none;
+      }
+      button:hover{
+        background-color: #dbdbdb;
+      }
     }
 
     .select-all-button{
@@ -121,4 +128,39 @@
     .dropdown-element{
       padding: 5px;
       width: -webkit-fill-available;
+    }
+
+    .chip{
+      font-size: 9px;
+      border: solid 1px #e4e4e4;
+      border-radius: 10px;
+      background-color: #e4e4e4;
+      color: #000000;
+      z-index: 1;
+      padding: 2px;
+    }
+
+    .selected-container{
+      height: 50px;
+      overflow-y: scroll;
+    }
+
+    /* width */
+    .selected-container::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    .selected-container::-webkit-scrollbar-track {
+      background: #FFFFFF;
+    }
+    
+    /* Handle */
+    .selected-container::-webkit-scrollbar-thumb {
+      background: #045073; 
+    }
+
+    /* Handle on hover */
+    .selected-container::-webkit-scrollbar-thumb:hover {
+      background: #045073; 
     }

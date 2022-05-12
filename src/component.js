@@ -37,6 +37,8 @@ export const component = ($element, layout, isHot) => {
   check.id = checkboxesId;
   scroll.id = scrollListId;
 
+  objectScope.selectedArray = [];
+
   if (layout.properties.showCondition == '0') return
 
   var tabHandler = function (e) {
@@ -105,19 +107,54 @@ export const component = ($element, layout, isHot) => {
   }
 
   objectScope.select = (item, event) => {
-    // console.log(item.disabled)
-    
+    var substring = '';
+    var checkboxes = document.getElementById(checkboxesId);
+    var list = document.getElementById(scrollListId);
+    var multiselect = document.getElementById(multiselectId);
+    var coords = getPos(multiselect);
+
     item.isChecked = !item.isChecked;
 
     if (event) event.preventDefault()
     // console.log(alwaysOneSelectedValue, item)
     // $scope.layout.qListObject.qDimensionInfo.qStateCounts.qSelected
     if (fieldType !== 'variable') {
-      if (alwaysOneSelectedValue && item.qState == 'S') return
-      scope.model.selectListObjectValues(`/qListObjectDef`, [item.qElemNumber], (alwaysOneSelectedValue ? false : true), true)
+
+      if (item.qState == 'S'){
+        
+        item.qState = 'O';
+        item.isChecked = false;
+        objectScope.selectedArray = objectScope.selectedArray.filter(x => x != item.qText.substring(0,15));
+        
+        console.log('FILTERED ITEMS', objectScope.selectedArray);
+        
+        scope.model.selectListObjectValues(`/qListObjectDef`, [item.qElemNumber], (alwaysOneSelectedValue ? false : true), true);
+
+        // if(objectScope.selectedArray.length == 3)
+        // checkboxes.style.top = (coords.y - 88) + 'px';
+
+        // if(objectScope.selectedArray.length < 3)
+        //   checkboxes.style.top = (coords.y - 98) + 'px';
+
+        return
+      }
+
+      item.qState = 'S';
+      item.isChecked = true;
+      scope.model.selectListObjectValues(`/qListObjectDef`, [item.qElemNumber], (alwaysOneSelectedValue ? false : true), true);
+
+      substring = item.qText.substring(0,15)
+      objectScope.selectedArray.push(substring);
+
+      // if(objectScope.selectedArray.length == 3)
+      //   checkboxes.style.top = (coords.y - 88) + 'px';
+
+      // if(objectScope.selectedArray.length < 3)
+      //   checkboxes.style.top = (coords.y - 98) + 'px';
+
     }
 
-    console.log(item);
+    console.log("SELECTED ELEMENTS",objectScope.selectedArray);
   }
 
   objectScope.selectAll = () => {
@@ -126,14 +163,11 @@ export const component = ($element, layout, isHot) => {
 
   objectScope.data = _.map(layout.qListObject.qDataPages[0].qMatrix, (e) => {
     var item = e[0];
-
+    console.log(item);
     item.isChecked = (item.qState == 'S')
-    
+
     //Insert color property
     switch(item.qState) {
-      case 'O':
-        item.color = '#ffff00'
-        break;
       case 'A':
         item.color = '#ddd'
         break;
@@ -167,8 +201,11 @@ export const component = ($element, layout, isHot) => {
   objectScope.clearSelections = () => {
     objectScope.data.forEach(element => {
       element.isChecked = false;
+      element.qState = 'O';
     });
-    scope.model.clearSelections('/qListObjectDef')
+    scope.model.clearSelections('/qListObjectDef');
+
+    objectScope.selectedArray = [];
   };
 
   objectScope.selectAllData = () => {
@@ -182,6 +219,7 @@ export const component = ($element, layout, isHot) => {
     if(!selectAllCheck){
       objectScope.data.forEach(element => {
         element.isChecked = true;
+        element.qState = 'S';
       });
       scope.model.selectListObjectAll('/qListObjectDef');
       selectAllCheck = true;
@@ -189,6 +227,7 @@ export const component = ($element, layout, isHot) => {
     else{
       objectScope.data.forEach(element => {
         element.isChecked = false;
+        element.qState = 'O';
       });
       scope.model.clearSelections('/qListObjectDef');
       selectAllCheck = false;
@@ -254,15 +293,16 @@ export const component = ($element, layout, isHot) => {
   var expanded = false;
 
   objectScope.showCheckboxes = () => {
+
     var checkboxes = document.getElementById(checkboxesId);
     var list = document.getElementById(scrollListId);
     var multiselect = document.getElementById(multiselectId);
     var coords = getPos(multiselect);
-    
+
     if (!expanded) {
       checkboxes.style.display = "block";
       try {
-        document.getElementById("grid").append(checkboxes);  
+        document.getElementById("grid").append(checkboxes);
         list.style.width = (multiselect.clientWidth - 13) + 'px';
         checkboxes.style.top = (coords.y - 98) + 'px';
         checkboxes.style.left = coords.x + 'px';
@@ -277,7 +317,7 @@ export const component = ($element, layout, isHot) => {
           console.log(error);
         }
       }
-      
+
       expanded = true;
     } else {
       checkboxes.style.display = "none";
@@ -292,7 +332,7 @@ export const component = ($element, layout, isHot) => {
          lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
     return {x: lx,y: ly};
 }
-  
-  
+
+
 }
 // if (!$element.hasClass('qv-object-modalpanel-extension')) $element.addClass('qv-object-modalpanel-extension')
