@@ -164,3 +164,28 @@
     .selected-container::-webkit-scrollbar-thumb:hover {
       background: #045073; 
     }
+
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted #045073;
+    }
+    
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 120px;
+      background-color: #045073;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      font-size: 12px;
+    
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 10;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+    }

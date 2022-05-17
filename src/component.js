@@ -117,10 +117,10 @@ export const component = ($element, layout, isHot) => {
 
     if (event) event.preventDefault()
     // console.log(alwaysOneSelectedValue, item)
-    // $scope.layout.qListObject.qDimensionInfo.qStateCounts.qSelected
+    //$scope.layout.qListObject.qDimensionInfo.qStateCounts.qSelected
     if (fieldType !== 'variable') {
 
-      if (item.qState == 'S'){
+      if (item.qState == 'S') {
         
         item.qState = 'O';
         item.isChecked = false;
@@ -153,13 +153,12 @@ export const component = ($element, layout, isHot) => {
       //   checkboxes.style.top = (coords.y - 98) + 'px';
 
     }
-
     console.log("SELECTED ELEMENTS",objectScope.selectedArray);
-  }
+  };
 
   objectScope.selectAll = () => {
     scope.model.selectListObjectAll('/qListObjectDef')
-  }
+  };
 
   objectScope.data = _.map(layout.qListObject.qDataPages[0].qMatrix, (e) => {
     var item = e[0];
@@ -181,7 +180,7 @@ export const component = ($element, layout, isHot) => {
     item.ariaLabel = `${item.qText} - is ${!item.isChecked ? 'not' : ''} selected`
 
     return item
-  })
+  });
 
   var qStateCounts = layout.qListObject.qDimensionInfo.qStateCounts;
 
