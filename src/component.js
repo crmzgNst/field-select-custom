@@ -39,6 +39,8 @@ export const component = ($element, layout, isHot) => {
 
   objectScope.selectedArray = [];
 
+  var initialData = [];
+
   if (layout.properties.showCondition == '0') return
 
   var tabHandler = function (e) {
@@ -96,7 +98,6 @@ export const component = ($element, layout, isHot) => {
   var alwaysOneSelectedValue = _.get(layout, 'properties.alwaysOneSelectedValue', false)
 
   objectScope.toggleSelectionMenu = ($event) => {
-    // console.log($event)
     var element = $event.currentTarget
     var popover = leonardoui.popover({
       content: $(`#${layout.qInfo.qId} .list-actions-menu`)[0].outerHTML,
@@ -127,6 +128,17 @@ export const component = ($element, layout, isHot) => {
         objectScope.selectedArray = objectScope.selectedArray.filter(x => x != item.qText.substring(0,15));
         
         console.log('FILTERED ITEMS', objectScope.selectedArray);
+
+        //TODO: Check logic
+        objectScope.data.sort((a,b) => {
+          if (a.qState === 'S' && b.qState !== 'S') {
+            return -1;
+          }
+          if (a.qState !== 'S' && b.qState === 'S') {
+            return 1;
+          }
+          return 0;
+        });
         
         scope.model.selectListObjectValues(`/qListObjectDef`, [item.qElemNumber], (alwaysOneSelectedValue ? false : true), true);
 
@@ -153,7 +165,17 @@ export const component = ($element, layout, isHot) => {
       //   checkboxes.style.top = (coords.y - 98) + 'px';
 
     }
+    //Sort elements by selected state
     console.log("SELECTED ELEMENTS",objectScope.selectedArray);
+    objectScope.data.sort((a,b) => {
+      if (a.qState === 'S' && b.qState !== 'S') {
+        return -1;
+      }
+      if (a.qState !== 'S' && b.qState === 'S') {
+        return 1;
+      }
+      return 0;
+    });
   };
 
   objectScope.selectAll = () => {
@@ -162,7 +184,6 @@ export const component = ($element, layout, isHot) => {
 
   objectScope.data = _.map(layout.qListObject.qDataPages[0].qMatrix, (e) => {
     var item = e[0];
-    console.log(item);
     item.isChecked = (item.qState == 'S')
 
     //Insert color property
@@ -178,7 +199,7 @@ export const component = ($element, layout, isHot) => {
     item.isAlternative = (item.qState == 'A')
     item.isOut = (item.qState == 'X')
     item.ariaLabel = `${item.qText} - is ${!item.isChecked ? 'not' : ''} selected`
-
+    initialData.push(item);
     return item
   });
 
@@ -198,6 +219,9 @@ export const component = ($element, layout, isHot) => {
   }
 
   objectScope.clearSelections = () => {
+    //TODO Check logic
+    objectScope.data = initialData;
+
     objectScope.data.forEach(element => {
       element.isChecked = false;
       element.qState = 'O';
